@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
 import {
   Rocket,
@@ -64,7 +64,7 @@ const items = [
   // },
 ];
 
-export function AppSidebar() {
+function AppSidebarContent() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const api = useApi();
@@ -556,5 +556,36 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
+  );
+}
+
+export function AppSidebar() {
+  return (
+    <Suspense
+      fallback={
+        <Sidebar>
+          <SidebarHeader>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton size="lg" className="hover:bg-zinc-900/50">
+                  <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-purple-600 text-sidebar-primary-foreground">
+                    <TrendingUp className="size-4" />
+                  </div>
+                  <div className="grid flex-1 text-left text-sm leading-tight">
+                    <span className="truncate font-semibold">Sei AgentFi</span>
+                    <span className="truncate text-xs">Platform</span>
+                  </div>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarHeader>
+          <SidebarContent>
+            <div className="p-4">Loading...</div>
+          </SidebarContent>
+        </Sidebar>
+      }
+    >
+      <AppSidebarContent />
+    </Suspense>
   );
 }
