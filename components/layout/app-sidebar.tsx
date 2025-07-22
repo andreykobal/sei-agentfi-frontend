@@ -536,12 +536,9 @@ function AppSidebarContent() {
                               Magic link sent!
                             </p>
                             <p className="text-muted-foreground text-sm">
-                              Check your email to sign in.
-                            </p>
-                            <p className="text-yellow-500 text-sm mt-2">
-                              If you don't see it, it might be in your spam
-                              folder.
-                            </p>
+                              Check your email to sign in. If you don't see it,
+                              it might be in your spam folder.
+                            </p>{" "}
                           </div>
                         ) : (
                           <form
