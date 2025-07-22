@@ -152,7 +152,7 @@ const Bubbles: React.FC = () => {
         }
 
         .gradient-bg .gradients-container {
-          filter: url(#goo) blur(20px);
+          filter: url(#goo) blur(40px);
           width: 100%;
           height: 100%;
           will-change: filter;
