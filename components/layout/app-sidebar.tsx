@@ -11,6 +11,7 @@ import {
   Check,
   Wallet,
   MessageCircle,
+  Bot,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -51,6 +52,11 @@ const items = [
     title: "Trade",
     url: "/trade",
     icon: TrendingUp,
+  },
+  {
+    title: "Autonomous Agents",
+    url: "/bots",
+    icon: Bot,
   },
   {
     title: "AI Assistant",
