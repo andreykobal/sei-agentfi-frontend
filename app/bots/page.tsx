@@ -592,7 +592,7 @@ export default function BotsPage() {
         <div className="flex justify-between items-start">
           <div>
             <h1 className="text-3xl font-bold text-foreground mb-2">
-              Autonomous Agents Dashboard
+              Autonomous Agents
             </h1>
             <p className="text-muted-foreground">
               Manage your liquidity automation agents on the Sei network
