@@ -345,6 +345,16 @@ export default function ChatPage() {
                         {children}
                       </a>
                     ),
+                    // Handle images with max width limit
+                    img: ({ src, alt, ...props }) => (
+                      <img
+                        src={src}
+                        alt={alt}
+                        {...props}
+                        className="max-w-[200px] h-auto rounded border"
+                        style={{ maxWidth: "200px" }}
+                      />
+                    ),
                     // Handle text nodes to process 0x strings
                     text: ({ children }) => {
                       if (typeof children === "string") {
