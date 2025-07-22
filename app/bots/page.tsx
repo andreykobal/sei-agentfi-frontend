@@ -613,10 +613,10 @@ export default function BotsPage() {
             <h1 className="text-3xl font-bold text-foreground mb-2">
               Autonomous Agents
             </h1>
-            <p className="text-muted-foreground">
+            <p className="text-foreground">
               Manage your liquidity automation agents on the Sei network
             </p>
-            <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
+            <div className="flex items-center gap-4 mt-2 text-sm text-foreground">
               <span>
                 {bots.length} agent{bots.length !== 1 ? "s" : ""}
               </span>
