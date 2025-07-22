@@ -421,6 +421,25 @@ export default function BotsPage() {
     return `${diffDays}d ago`;
   };
 
+  const formatTimeUntil = (dateString: string) => {
+    const now = new Date();
+    const future = new Date(dateString);
+    const diffMs = future.getTime() - now.getTime();
+
+    // If the time is in the past, show "overdue"
+    if (diffMs <= 0) return "overdue";
+
+    const diffSecs = Math.floor(diffMs / 1000);
+    const diffMins = Math.floor(diffSecs / 60);
+    const diffHours = Math.floor(diffMins / 60);
+    const diffDays = Math.floor(diffHours / 24);
+
+    if (diffSecs < 60) return `in ${diffSecs}s`;
+    if (diffMins < 60) return `in ${diffMins}m`;
+    if (diffHours < 24) return `in ${diffHours}h`;
+    return `in ${diffDays}d`;
+  };
+
   const formatPrice = (priceWei: string | undefined) => {
     if (!priceWei || priceWei === "0") return "N/A";
     try {
@@ -1206,7 +1225,7 @@ export default function BotsPage() {
                           {bot.nextTradeAt && bot.isActive && (
                             <div className="text-xs text-muted-foreground">
                               <p>
-                                Next trade: {formatTimeAgo(bot.nextTradeAt)}
+                                Next trade: {formatTimeUntil(bot.nextTradeAt)}
                               </p>
                             </div>
                           )}
