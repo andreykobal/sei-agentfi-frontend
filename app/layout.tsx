@@ -32,7 +32,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Bubbles />
+        {/* <Bubbles /> */}
         <SidebarProvider>
           <AppSidebar />
           <main className="flex flex-1 flex-col">

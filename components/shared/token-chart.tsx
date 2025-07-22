@@ -279,7 +279,7 @@ export function TokenChart({ tokenAddress, className }: TokenChartProps) {
           Token: {tokenAddress.slice(0, 8)}...{tokenAddress.slice(-6)}
         </p>
         <p className="text-xs text-muted-foreground">
-          30-minute intervals • {chartData.length} data points
+          5-minute intervals • {chartData.length} data points
         </p>
       </div>
       <div
