@@ -109,6 +109,8 @@ function AppSidebarContent() {
     const token = searchParams.get("token");
     if (token && !hasProcessedTokenRef.current) {
       hasProcessedTokenRef.current = true;
+      // Automatically open dialog when processing magic link
+      setIsDialogOpen(true);
       verifyMagicLinkToken(token);
       return;
     }
@@ -164,6 +166,12 @@ function AppSidebarContent() {
         setUserData(data.email, data.walletAddress);
         toast.success("Authentication successful! Welcome to Sei AgentFi.");
 
+        // Refresh balances after successful authentication
+        fetchBalances();
+
+        // Close the dialog after successful authentication
+        setIsDialogOpen(false);
+
         window.history.replaceState({}, document.title, "/");
       } else {
         toast.error(data.error || "Authentication failed");
@@ -172,8 +180,19 @@ function AppSidebarContent() {
       console.error("Error verifying magic link:", error);
       const errorMessage =
         error.response?.data?.error ||
-        "Network error occurred during verification";
-      toast.error(errorMessage);
+        "Network error occurred during authentication";
+
+      // Show more specific error messages for wallet funding failures
+      if (error.response?.data?.error?.includes("fund")) {
+        toast.error("Failed to fund your wallet. Please try again later.");
+      } else {
+        toast.error(errorMessage);
+      }
+
+      // Close dialog after a delay to let user see the error
+      setTimeout(() => {
+        setIsDialogOpen(false);
+      }, 3000);
     } finally {
       setVerifying(false);
     }
@@ -186,6 +205,9 @@ function AppSidebarContent() {
       if (response.status === 200) {
         const data = response.data;
         setUserData(data.email, data.walletAddress);
+
+        // Refresh balances for existing authenticated user
+        fetchBalances();
       } else {
         localStorage.removeItem("authToken");
         storeLogout();
@@ -474,7 +496,9 @@ function AppSidebarContent() {
                 ) : (
                   <Dialog
                     open={isDialogOpen}
-                    onOpenChange={handleDialogOpenChange}
+                    onOpenChange={
+                      isVerifying ? undefined : handleDialogOpenChange
+                    }
                   >
                     <DialogTrigger asChild>
                       <SidebarMenuButton className="bg-white text-black hover:bg-white/80 hover:text-black">
@@ -491,10 +515,10 @@ function AppSidebarContent() {
                           <div className="text-center py-8">
                             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
                             <p className="text-foreground font-medium">
-                              Verifying your magic link...
+                              Authenticating...
                             </p>
                             <p className="text-muted-foreground text-sm">
-                              Please wait while we authenticate you.
+                              Setting up your wallet and funding your account.
                             </p>
                           </div>
                         ) : isMagicLinkSent ? (
