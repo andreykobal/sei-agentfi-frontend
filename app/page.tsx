@@ -438,9 +438,7 @@ export default function Home() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">
-            Sei AgentFi
-          </h1>
+          <h1 className="text-4xl font-bold text-foreground mb-2">Sei DeFAI</h1>
           <p className="text-lg text-foreground">
             Discover and explore AI agents created on the Sei network
           </p>
