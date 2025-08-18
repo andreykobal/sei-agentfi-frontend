@@ -170,7 +170,7 @@ function AppSidebarContent() {
         localStorage.setItem("authToken", data.token);
 
         setUserData(data.email, data.walletAddress);
-        toast.success("Authentication successful! Welcome to Sei AgentFi.");
+        toast.success("Authentication successful! Welcome to Sei DeFAI.");
 
         // Refresh balances after successful authentication
         fetchBalances();
@@ -310,7 +310,7 @@ function AppSidebarContent() {
                 <TrendingUp className="size-4" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">Sei AgentFi</span>
+                <span className="truncate font-semibold">Sei DeFAI</span>
                 <span className="truncate text-xs">Platform</span>
               </div>
             </SidebarMenuButton>
@@ -514,7 +514,7 @@ function AppSidebarContent() {
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
-                        <DialogTitle>Sign in to Sei AgentFi</DialogTitle>
+                        <DialogTitle>Sign in to Sei DeFAI</DialogTitle>
                       </DialogHeader>
                       <div className="space-y-4">
                         {isVerifying ? (
@@ -603,7 +603,7 @@ export function AppSidebar() {
                     <TrendingUp className="size-4" />
                   </div>
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">Sei AgentFi</span>
+                    <span className="truncate font-semibold">Sei DeFAI</span>
                     <span className="truncate text-xs">Platform</span>
                   </div>
                 </SidebarMenuButton>
