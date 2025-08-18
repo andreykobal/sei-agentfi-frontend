@@ -84,7 +84,7 @@ export function TokenChart({ tokenAddress, className }: TokenChartProps) {
       setError(null);
 
       const response = await get<ChartApiResponse>(
-        `/tokens/chart/${tokenAddress}?days=7`
+        `/tokens/chart/${tokenAddress}?days=0`
       );
 
       if (response.data.success) {
@@ -279,7 +279,7 @@ export function TokenChart({ tokenAddress, className }: TokenChartProps) {
           Token: {tokenAddress.slice(0, 8)}...{tokenAddress.slice(-6)}
         </p>
         <p className="text-xs text-muted-foreground">
-          5-minute intervals • {chartData.length} data points
+          5-minute intervals • {chartData.length} data points • Full history
         </p>
       </div>
       <div
